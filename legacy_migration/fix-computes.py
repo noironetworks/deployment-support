@@ -175,8 +175,8 @@ for host in all_hosts:
     ssh.connect(host, username=default_username)
     if host == dhcp_host:
         update_dhcp_agent_cfg(ssh)
-    update_agent_ovs_cfg(ssh)
-    update_agent_neutron_cfg(ssh)
+    #update_agent_ovs_cfg(ssh)
+    #update_agent_neutron_cfg(ssh)
     if host != all_hosts[0]:
         restart_metadata_agent(ssh)
     fix_br_fabric(ssh)
@@ -188,12 +188,12 @@ cmd2 = "--container-format bare --file cirros-0.3.5-x86_64-disk.img cirros.new"
 cmd = cmd1 + cmd2
 print cmd
 hosts = subprocess.check_output(['bash','-c', cmd])
-cmd1 = "neutron net-create Datacenter-Out --router:external True --shared "
+cmd1 = "neutron net-create l3out-2 --router:external True --shared "
 cmd2 = "--provider:network_type opflex --provider:physical_network physnet1"
 cmd = cmd1 + cmd2
 print cmd
 hosts = subprocess.check_output(['bash','-c', cmd])
-cmd1 = "neutron subnet-create Datacenter-Out 60.60.60.0/24 --name ext_subnet "
+cmd1 = "neutron subnet-create l3out-2 60.60.60.0/24 --name ext_subnet "
 cmd2 = "--gateway 60.60.60.1 --disable-dhcp"
 cmd = cmd1 + cmd2
 print cmd

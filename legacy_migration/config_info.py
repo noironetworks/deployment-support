@@ -43,12 +43,21 @@ class ConfigInfo(object):
             cfg_dict[k] = v
         return cfg_dict
 
-    def find_config_item(self, config_name):
-        for section_name in self.sections_dict.keys():
-            section_cfg = self.sections_dict[section_name]
-            if config_name in section_cfg:
-                return section_name, section_cfg[config_name]
-        return None, {}
+    def find_config_item(self, config_name, section_name=None):
+        if section_name:
+            section_keys = [section_name]
+        else:
+            section_keys = self.sections_dict.keys()
+        for section_key in section_keys:
+            section_cfg = self.sections_dict.get(section_key)
+            if section_cfg and config_name in section_cfg:
+                return section_key, section_cfg[config_name]
+        # If the user specified the section, and it's present,
+        # return the configuration
+        if section_name in self.sections_dict.keys():
+            return section_name, {}
+        else:
+            return None, {}
 
     def set_section_config(self, section_name, key, value):
         self.sections_dict[section_name][key] = value
