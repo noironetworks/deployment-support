@@ -24,14 +24,15 @@ class FixNautoConfig(object):
 
         ext_prefix = 'apic_external_network:'
         # Change the external networks to pre-existing, with correct policy
-        for ext_net, pol in [('Datacenter-Out', 'DcExtPol'),
-                             ('Management-Out', 'MgmtExtPol')]:
+        for ext_net, pol in [('l3out-1', 'l3out_1_net'),
+                             ('l3out-2', 'l3out_2_net')]:
             ext_name = ext_prefix+ ext_net
             self.neutron_config.sections_dict[ext_name] = {}
             self.neutron_config.sections_dict[ext_name]['preexisting'] = 'True'
             self.neutron_config.sections_dict[ext_name]['external_epg'] = pol
         # Remove unused net
-        ext_name = ext_prefix+ 'NoNatL3Out'
+        for ext_net in ['Datacenter-Out', 'Management-Out', 'NoNatL3Out']:
+            ext_name = ext_prefix + ext_net
         del(self.neutron_config.sections_dict[ext_name])
 
         # Add the missing apic_aim_auth section
