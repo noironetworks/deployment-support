@@ -13,9 +13,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-# This module contains a bunch of helper classes
-# that are used to facilitate and somewhat automate
-# migration from the legacy plugins to the merged plugin
 import click
 import config_info
 
@@ -71,6 +68,13 @@ AIMCTL_DEFAULT_CFG = {'DEFAULT':
                            'apic_function_profile': None,
                            'apic_vpc_pairs': None}
                      }
+
+
+@click.group()
+def cfg_mgmt_tool():
+    """Commands for AIM configuration file management"""
+    pass
+
 
 class AimConfig(object):
     """Update aim.conf and aimctl.conf files.
@@ -216,7 +220,7 @@ class NeutronConfig(object):
     #def migrate_md_config(self):
         
 
-@click.command()
+@cfg_mgmt_tool.command()
 @click.option('--config-file', multiple=True,
               help='Configuration file name')
 def make_aim_cfg(config_file):
@@ -225,5 +229,10 @@ def make_aim_cfg(config_file):
     aim_cfg.create_aim_config()
     click.echo("Generated aim.conf and aimctl.conf.")
 
+
+def run():
+    cfg_mgmt_tool(auto_envvar_prefix='CFGMGMTTOOL')
+
+
 if __name__ == '__main__':
-    make_aim_cfg()
+    run()

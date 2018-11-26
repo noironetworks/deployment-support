@@ -1,9 +1,32 @@
+# Copyright (c) 2018 Cisco Systems
+# All Rights Reserved.
+#
+#    Licensed under the Apache License, Version 2.0 (the "License"); you may
+#    not use this file except in compliance with the License. You may obtain
+#    a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#    License for the specific language governing permissions and limitations
+#    under the License.
+
 import click
 import config_info
 
 DEFAULT_NEUTRON_CONF = '/etc/neutron/neutron.conf'
 DEFAULT_PLUGIN_CONF = '/etc/neutron/plugin.ini'
 DRV = 'aim_extension,proxy_group,apic_allowed_vm_name,apic_segmentation_label'
+
+
+@click.group()
+def toggle_config():
+    """Commands for config file toggling"""
+    pass
+
+
 class ToggleConfig(object):
 
     def __init__(self, config_file_names):
@@ -71,18 +94,23 @@ class ToggleConfig(object):
             cfg_obj.write_configuration()
 
 
-@click.command()
+@toggle_config.command()
 @click.option('--config-file', multiple=True,
               help='Configuration file name')
 @click.option('--toggle', default='new',
               help="Configuration to use. Use 'new' for merged, 'old' for legacy")
-def toggle_config(config_file, toggle):
-    toggle_config = ToggleConfig(config_file)
+def toggle(config_file, toggle):
+    toggler = ToggleConfig(config_file)
     if toggle == 'new':
-        toggle_config.new_config()
+        toggler.new_config()
     elif toggle == 'old':
-        toggle_config.old_config()
-    toggle_config.write_config()
+        toggler.old_config()
+    toggler.write_config()
+
+
+def run():
+    toggle_config(auto_envvar_prefix='TOGGLECONFIG')
+
 
 if __name__ == '__main__':
-    toggle_config()
+    run()
