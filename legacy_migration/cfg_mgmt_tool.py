@@ -13,7 +13,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import click
 import config_info
 
 # Where things usually live
@@ -68,12 +67,6 @@ AIMCTL_DEFAULT_CFG = {'DEFAULT':
                            'apic_function_profile': None,
                            'apic_vpc_pairs': None}
                      }
-
-
-@click.group()
-def cfg_mgmt_tool():
-    """Commands for AIM configuration file management"""
-    pass
 
 
 class AimConfig(object):
@@ -218,21 +211,3 @@ class NeutronConfig(object):
 
     # TODO: create APIs for the steps listed above
     #def migrate_md_config(self):
-        
-
-@cfg_mgmt_tool.command()
-@click.option('--config-file', multiple=True,
-              help='Configuration file name')
-def make_aim_cfg(config_file):
-    aim_cfg = AimConfig(config_file)
-    aim_cfg.get_legacy_config()
-    aim_cfg.create_aim_config()
-    click.echo("Generated aim.conf and aimctl.conf.")
-
-
-def run():
-    cfg_mgmt_tool(auto_envvar_prefix='CFGMGMTTOOL')
-
-
-if __name__ == '__main__':
-    run()
