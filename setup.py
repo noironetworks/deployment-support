@@ -29,9 +29,7 @@ setuptools.setup(
     description="This library provides tools for ACI OpenStack deployments.",
     entry_points={
         'console_scripts': [
-            'cfg_mgmt_tool = legacy_migration.cfg_mgmt_tool:run',
-            'toggle_cfg = legacy_migration.toggle_cfg:run',
-            'update_domain = legacy_migration.update_domain:run'
+            'deployment_tool = legacy_migration.deployment_tool:run'
         ]
     }
 )

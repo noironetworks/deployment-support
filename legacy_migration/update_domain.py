@@ -13,7 +13,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import click
 import config_info
 
 # Where things usually live
@@ -21,12 +20,6 @@ OPFLEX_CONF = '/etc/opflex-agent-ovs/conf.d/opflex-agent-ovs.conf'
 OPFLEX_DEFAULT_CFG = {'opflex': 
     {'domain': 'comp/prov-OpenStack/ctrlr-[%(dom)s]-%(dom)s/sw-InsiemeLSOid'}
 }
-
-@click.group()
-def update_domain():
-    """Commands for updating opflex domains"""
-    pass
-
 
 
 class OpflexConfig(object):
@@ -121,21 +114,3 @@ class OpflexConfig(object):
         aimctl_cfg = config_info.ConfigInfo(self.aimctl_filename,
                                             config_dict = params)
         aimctl_cfg.write_configuration()
-
-
-@update_domain.command()
-@click.option('--config-file',
-              help='Configuration file name')
-def make_aim_cfg(config_file):
-    opflex_cfg = OpflexConfig(config_file)
-    opflex_cfg.get_legacy_config()
-    opflex_cfg.create_opflex_config()
-    click.echo("Updated opflex.conf.conf.")
-
-
-def run():
-    update_domain(auto_envvar_prefix='UPDATEDOMAIN')
-
-
-if __name__ == '__main__':
-    run()

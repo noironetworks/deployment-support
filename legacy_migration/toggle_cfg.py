@@ -13,18 +13,11 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import click
 import config_info
 
 DEFAULT_NEUTRON_CONF = '/etc/neutron/neutron.conf'
 DEFAULT_PLUGIN_CONF = '/etc/neutron/plugin.ini'
 DRV = 'aim_extension,proxy_group,apic_allowed_vm_name,apic_segmentation_label'
-
-
-@click.group()
-def toggle_config():
-    """Commands for config file toggling"""
-    pass
 
 
 class ToggleConfig(object):
@@ -94,23 +87,3 @@ class ToggleConfig(object):
             cfg_obj.write_configuration()
 
 
-@toggle_config.command()
-@click.option('--config-file', multiple=True,
-              help='Configuration file name')
-@click.option('--toggle', default='new',
-              help="Configuration to use. Use 'new' for merged, 'old' for legacy")
-def toggle(config_file, toggle):
-    toggler = ToggleConfig(config_file)
-    if toggle == 'new':
-        toggler.new_config()
-    elif toggle == 'old':
-        toggler.old_config()
-    toggler.write_config()
-
-
-def run():
-    toggle_config(auto_envvar_prefix='TOGGLECONFIG')
-
-
-if __name__ == '__main__':
-    run()
