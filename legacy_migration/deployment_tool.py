@@ -50,13 +50,34 @@ def make_aim_cfg(config_file):
     click.echo("Generated aim.conf and aimctl.conf.")
 
 
-@deployment_tool.command(name="update-domain")
-@click.option('--config-file', multiple=True,
-              help='Configuration file name')
-def update_domains(config_file):
-    opflex_cfg = update_domain.OpflexConfig(config_file)
-    opflex_cfg.get_legacy_config()
-    opflex_cfg.create_aim_config()
+@deployment_tool.command(name="get-domains")
+@click.option('--credentials-file',
+              help='OpenStack admin RC/credentials file')
+@click.option('--config-directory',
+              help='Directory on computes containing OpFlex agent config.')
+@click.option('--output-file',
+              help='File to place host/VMM Domain mappings (JSON)')
+def update_domains(credentials_file, config_directory, output_file):
+    agent_manager = update_domain.OpflexAgentManager(credentials_file,
+        config_directory, output_file)
+    agent_manager.extract_host_vmm_mappings()
+    agent_manager.write_host_mappings()
+    click.echo("Wrote host/VMM Domain associations")
+
+
+@deployment_tool.command(name="update-domains")
+@click.option('--input-file',
+              help='File containing host/VMM Domain mappings (JSON)')
+@click.option('--credentials-file',
+              help='OpenStack RC/credentials file')
+@click.option('--config-directory',
+              help='Directory on computes containing OpFlex agent config.')
+def update_domains(credentials_file, config_directory, input_file):
+    agent_manager = update_domain.OpflexAgentManager(credentials_file,
+        config_directory, input_file)
+    agent_manager.read_host_mappings()
+    agent_manager.update_host_vmm_mappings()
+    agent_manager.update_opflex_host_config()
     click.echo("Updated opflex-agent configuration")
 
 
