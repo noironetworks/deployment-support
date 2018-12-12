@@ -80,7 +80,7 @@ class ToggleConfig(object):
         for cfg_obj in self.cfg_objs.values():
             if 'neutron.conf' in cfg_obj.filename :
                 cfg_obj.set_section_config('DEFAULT',
-                                           'agent_down_time', '7200')
+                                           'agent_down_time', '7200000')
 
     def write_config(self, neutron_out=None, plugin_out=None):
         for cfg_obj in self.cfg_objs.values():
