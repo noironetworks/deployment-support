@@ -26,6 +26,7 @@ rm -f requirements.txt
 
 %files
 %doc README.rst
+%{python2_sitelib}/agent
 %{python2_sitelib}/legacy_migration
 %{python2_sitelib}/deployment_support-%%{version}*.egg-info
 %{_bindir}/deployment_tool
