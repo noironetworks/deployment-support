@@ -17,7 +17,7 @@ import setuptools
 
 
 setuptools.setup(
-    name="deployment-support",
+    name="support-tools",
     version="1.0.0",
     zip_safe=False,
     packages=setuptools.find_packages(exclude=["*.tests", "*.tests.*",
@@ -29,7 +29,7 @@ setuptools.setup(
     description="This library provides tools for ACI OpenStack deployments.",
     entry_points={
         'console_scripts': [
-            'deployment_tool = legacy_migration.deployment_tool:run'
+            'support_tool = legacy_migration.deployment_tool:run'
         ]
     }
 )

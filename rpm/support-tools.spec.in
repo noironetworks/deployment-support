@@ -1,10 +1,10 @@
-Name:		deployment-support
+Name:		support-tools
 Version:	@VERSION@
 Release:	@RELEASE@%{?dist}
 Summary:	Deployment support tools for ACI OpenStack
 License:	ASL 2.0
 URL:		http://github.com/noironetworks/deployment-support
-Source:		deployment-support-%{version}.tar.gz
+Source:		support-tools-%{version}.tar.gz
 BuildArch:	noarch
 BuildRequires:	python2-devel
 BuildRequires:	python-pbr
@@ -15,7 +15,7 @@ Requires:	python-click >= 3.3
 Library that provides reference tools for deployments
 
 %prep
-%setup -qn deployment-support-%{version}
+%setup -qn support-tools-%{version}
 rm -f requirements.txt
 
 %build
@@ -28,8 +28,8 @@ rm -f requirements.txt
 %doc README.rst
 %{python2_sitelib}/agent
 %{python2_sitelib}/legacy_migration
-%{python2_sitelib}/deployment_support-%%{version}*.egg-info
-%{_bindir}/deployment_tool
+%{python2_sitelib}/support_tools-%%{version}*.egg-info
+%{_bindir}/support_tool
 
 %changelog
 * Mon Nov 26 2018 Thomas Bachman <tbachman@yahoo.com> - 1.0.0-1
