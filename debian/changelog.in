@@ -1,4 +1,4 @@
-deployment-support (@VERSION@-@REVISION@) trusty; urgency=low
+support-tools (@VERSION@-@REVISION@) trusty; urgency=low
 
   * [Placeholder]
 
