@@ -11,7 +11,7 @@ Here is a list of the included scripts:
 
 ## db_check.sh
 
-This script exists to address an issue that has been seen
+The db_check.sh script checks to see if there are any issues
 with AIM database migrations. It queries the current head
 in the AIM alembic migrations table, and checks that against
 the expected head, which is defined in the installed AIM
