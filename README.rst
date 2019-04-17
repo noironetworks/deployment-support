@@ -86,9 +86,9 @@ VMM domains using mapping information contained in a json file.
                              config.
 
     example:
-    support_tool get-domains --input-file vmm-doms.txt \
-                              --credentials-file /home/admin/adiminrc \
-                              --config-directory /etc/opflexaagent-ovs
+    support_tool update-domains --input-file vmm-doms.txt \
+                                --credentials-file /home/admin/adiminrc \
+                                --config-directory /etc/opflexaagent-ovs
 
 * toggle-config
 This toggles the neutron configuration between the legacy ML2 driver 
