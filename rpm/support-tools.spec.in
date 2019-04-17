@@ -25,7 +25,7 @@ rm -f requirements.txt
 %{__python2} setup.py install -O1 --install-data / --skip-build --root %{buildroot}
 
 %files
-%doc README.md
+%doc README.rst
 %{python2_sitelib}/agent
 %{python2_sitelib}/legacy_migration
 %{python2_sitelib}/support_tools-%%{version}*.egg-info
