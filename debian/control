@@ -1,4 +1,4 @@
-Source: deployment-support
+Source: support-tools
 Section: python
 Priority: optional
 Maintainer: Cisco Systems, Inc. <deployment-support@noironetworks.com>
@@ -8,7 +8,7 @@ Homepage: http://github.com/noironetworks/deployment-support/
 Vcs-Git: git://github.com/noironetworks/deployment-support.git
 Vcs-Browser: http://github.com/noironetworks/deployment-support/
 
-Package: python-deployment-support
+Package: python-support-tools
 Architecture: all
 Depends: python-click-cli (>=3.3) | python-click (>=6.2),
          ${misc:Depends}, ${python:Depends}

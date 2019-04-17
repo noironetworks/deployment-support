@@ -1,5 +1,5 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: deployment-support
+Upstream-Name: support-tools
 Source: http://github.com/noironetworks/deployment-support/
 
 Files: *
