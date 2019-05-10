@@ -24,9 +24,9 @@ def policy_db():
     pass
 
 @policy_db.command(name="ep-info")
-@click.option('--policy-file',
+@click.option('--policy-file',required=True,
               help='Policy file name (JSON)')
-@click.option('--endpoint',
+@click.option('--endpoint', required=True,
               help='ID of endpoint (L2 MAC or L3 IP)')
 def ep_info(policy_file, endpoint):
     policy_conf = policy_config.PolicyConfigManager(policy_file)
@@ -34,7 +34,7 @@ def ep_info(policy_file, endpoint):
 
 
 @policy_db.command(name="list-l2-eps")
-@click.option('--policy-file',
+@click.option('--policy-file',required=True,
               help='Policy file name (JSON)')
 def list_l2_eps(policy_file):
     policy_conf = policy_config.PolicyConfigManager(policy_file)
@@ -42,7 +42,7 @@ def list_l2_eps(policy_file):
 
 
 @policy_db.command(name="list-l3-eps")
-@click.option('--policy-file',
+@click.option('--policy-file',required=True,
               help='Policy file name (JSON)')
 def list_l3_eps(policy_file):
     policy_conf = policy_config.PolicyConfigManager(policy_file)
@@ -50,7 +50,7 @@ def list_l3_eps(policy_file):
 
 
 @policy_db.command(name="list-vms")
-@click.option('--policy-file',
+@click.option('--policy-file',required=True,
               help='Policy file name (JSON)')
 def list_vms(policy_file):
     policy_conf = policy_config.PolicyConfigManager(policy_file)
@@ -58,9 +58,9 @@ def list_vms(policy_file):
 
 
 @policy_db.command(name="find-policy")
-@click.option('--policy-file',
+@click.option('--policy-file',required=True,
               help='Policy file name (JSON)')
-@click.option('--policy-name',
+@click.option('--policy-name',required=True,
               help='Name of the type of policy objects to find')
 def find_policy(policy_file, policy_name):
     policy_conf = policy_config.PolicyConfigManager(policy_file)
