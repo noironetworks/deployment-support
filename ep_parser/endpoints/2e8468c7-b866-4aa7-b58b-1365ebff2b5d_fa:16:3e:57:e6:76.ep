@@ -1,0 +1,65 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "10.31.64.1", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "10.31.64.176", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "10.31.64.1"
+        ], 
+        "dns-servers": [
+            "1.1.1.1", 
+            "8.8.8.8", 
+            "8.8.4.4"
+        ]
+    }, 
+    "access-interface": "tap2e8468c7-b8", 
+    "ip": [
+        "10.31.64.176"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "10.31.64.176"
+    ], 
+    "mac": "fa:16:3e:57:e6:76", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_a652ca69a2c840b09503775d55f6b97b", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "10.31.64.176", 
+            "next-hop-mac": "42:0b:f4:f1:bc:4a", 
+            "uuid": "366ef18b-d494-46cb-87a8-86d0727830dc", 
+            "floating-ip": "169.254.0.16", 
+            "next-hop-if": "of-1891042824a8", 
+            "policy-space-name": "common", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_a5fe764b-059a-49df-a59d-ebb419b764f5", 
+    "access-uplink-interface": "qpf2e8468c7-b8", 
+    "neutron-network": "a5fe764b-059a-49df-a59d-ebb419b764f5", 
+    "interface-name": "qpi2e8468c7-b8", 
+    "security-group": [
+        {
+            "policy-space": "prj_ea771a6ed3444aa982ac390e8d5ea18d", 
+            "name": "5a923665-6a8a-435f-8a80-fa919eae5535"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "2e8468c7-b866-4aa7-b58b-1365ebff2b5d|fa-16-3e-57-e6-76", 
+    "policy-space-name": "prj_a652ca69a2c840b09503775d55f6b97b", 
+    "attributes": {
+        "vm-name": "amphora-11fa9061-17dc-4750-9d95-414a9d3da019"
+    }
+}

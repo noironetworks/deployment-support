@@ -1,0 +1,66 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "192.168.231.251", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "192.168.231.97", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "192.168.231.251"
+        ], 
+        "dns-servers": [
+            "216.146.35.35", 
+            "8.8.8.8", 
+            "216.146.36.36", 
+            "8.8.4.4"
+        ]
+    }, 
+    "access-interface": "tap0a1d7e40-f9", 
+    "ip": [
+        "192.168.231.97"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "192.168.231.97"
+    ], 
+    "mac": "fa:16:3e:c2:cc:bc", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_5eebc0f3eb1049b3b8a09c51274084db", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "192.168.231.97", 
+            "next-hop-mac": "42:0b:f4:f1:bc:4a", 
+            "uuid": "f5d26370-7fdd-4524-aafe-a5ea98ba3d67", 
+            "floating-ip": "169.254.0.22", 
+            "next-hop-if": "of-1891042824a8", 
+            "policy-space-name": "common", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_ff634559-112f-4819-85b1-384a47362415", 
+    "access-uplink-interface": "qpf0a1d7e40-f9", 
+    "neutron-network": "ff634559-112f-4819-85b1-384a47362415", 
+    "interface-name": "qpi0a1d7e40-f9", 
+    "security-group": [
+        {
+            "policy-space": "prj_5eebc0f3eb1049b3b8a09c51274084db", 
+            "name": "ffadd8bd-aeec-425b-a788-23f670f2fa57"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "0a1d7e40-f93d-4001-8157-b54f6a96a345|fa-16-3e-c2-cc-bc", 
+    "policy-space-name": "prj_5eebc0f3eb1049b3b8a09c51274084db", 
+    "attributes": {
+        "vm-name": "logstash-0-sto1-ctr_development"
+    }
+}

@@ -1,0 +1,82 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "10.31.64.1", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "10.31.64.111", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "10.31.64.1"
+        ], 
+        "dns-servers": [
+            "1.1.1.1", 
+            "8.8.8.8", 
+            "8.8.4.4"
+        ]
+    }, 
+    "access-interface": "tapa25309c4-24", 
+    "ip": [
+        "10.31.64.111", 
+        "10.31.64.92"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "10.31.64.111", 
+        "10.31.64.92"
+    ], 
+    "mac": "fa:16:3e:dd:cf:54", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_a652ca69a2c840b09503775d55f6b97b", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "10.31.64.111", 
+            "next-hop-mac": "42:0b:f4:f1:bc:4a", 
+            "uuid": "266977ad-f19f-40b6-ba28-98f2c0c30f61", 
+            "floating-ip": "169.254.0.17", 
+            "next-hop-if": "of-1891042824a8", 
+            "policy-space-name": "common", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1"
+        }, 
+        {
+            "mapped-ip": "10.31.64.92", 
+            "next-hop-mac": "42:0b:f4:f1:bc:4a", 
+            "uuid": "e0db4933-24a0-4f64-9b69-f007c8a70589", 
+            "floating-ip": "169.254.0.37", 
+            "next-hop-if": "of-1891042824a8", 
+            "policy-space-name": "common", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_a5fe764b-059a-49df-a59d-ebb419b764f5", 
+    "access-uplink-interface": "qpfa25309c4-24", 
+    "neutron-network": "a5fe764b-059a-49df-a59d-ebb419b764f5", 
+    "interface-name": "qpia25309c4-24", 
+    "security-group": [
+        {
+            "policy-space": "prj_ea771a6ed3444aa982ac390e8d5ea18d", 
+            "name": "f0b54147-fb88-449d-a533-5ff380a01a00"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "a25309c4-247e-436c-966a-96e22ca8c9b9|fa-16-3e-dd-cf-54", 
+    "policy-space-name": "prj_a652ca69a2c840b09503775d55f6b97b", 
+    "attributes": {
+        "vm-name": "amphora-70cf1481-a932-417e-a790-30ef672856c2"
+    }, 
+    "virtual-ip": [
+        {
+            "ip": "10.31.64.92", 
+            "mac": "fa:16:3e:dd:cf:54"
+        }
+    ]
+}
