@@ -1,0 +1,63 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "192.168.0.1", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "192.168.0.3", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "192.168.0.1"
+        ], 
+        "dns-servers": []
+    }, 
+    "access-interface": "tapf0faebe9-72", 
+    "ip": [
+        "192.168.0.3"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "192.168.0.3"
+    ], 
+    "mac": "fa:16:3e:e1:e6:c1", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_a07fd0a9c8e34c0ab79f135718b3caa1", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "192.168.0.3", 
+            "policy-space-name": "common", 
+            "floating-ip": "212.237.149.168", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1", 
+            "uuid": "756f093b-92e5-462c-a53c-e629086e714f"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_571012ff-89bf-4236-adf7-23be9b838d33", 
+    "access-uplink-interface": "qpff0faebe9-72", 
+    "neutron-network": "571012ff-89bf-4236-adf7-23be9b838d33", 
+    "interface-name": "qpif0faebe9-72", 
+    "security-group": [
+        {
+            "policy-space": "prj_a07fd0a9c8e34c0ab79f135718b3caa1", 
+            "name": "11b7f019-5425-4e9d-b33a-cf63d35da1c5"
+        }, 
+        {
+            "policy-space": "prj_a07fd0a9c8e34c0ab79f135718b3caa1", 
+            "name": "4e2478e7-8228-4807-b3f4-0eb35a1be822"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "f0faebe9-7284-4e63-9110-df97f31694c9|fa-16-3e-e1-e6-c1", 
+    "policy-space-name": "prj_a07fd0a9c8e34c0ab79f135718b3caa1", 
+    "attributes": {
+        "vm-name": "bisgraf-prod"
+    }
+}

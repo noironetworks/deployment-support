@@ -1,0 +1,65 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "10.63.0.1", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "10.63.0.13", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "10.63.0.1"
+        ], 
+        "dns-servers": [
+            "1.1.1.1"
+        ]
+    }, 
+    "access-interface": "tap4f7a5f4b-3c", 
+    "ip": [
+        "10.63.0.13"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "10.63.0.13"
+    ], 
+    "mac": "fa:16:3e:48:23:0e", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_0b1d81cb1c9942a9bcbc6d5ec4055f56", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "10.63.0.13", 
+            "policy-space-name": "common", 
+            "floating-ip": "212.237.149.66", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1", 
+            "uuid": "353ac8cc-64f4-43ad-ab9a-5dda94c67a10"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_987d8c83-9be7-481e-96a2-5b8f58c37297", 
+    "access-uplink-interface": "qpf4f7a5f4b-3c", 
+    "neutron-network": "987d8c83-9be7-481e-96a2-5b8f58c37297", 
+    "interface-name": "qpi4f7a5f4b-3c", 
+    "security-group": [
+        {
+            "policy-space": "prj_0b1d81cb1c9942a9bcbc6d5ec4055f56", 
+            "name": "72aee056-88c9-44c7-a614-acf1a673f09b"
+        }, 
+        {
+            "policy-space": "prj_0b1d81cb1c9942a9bcbc6d5ec4055f56", 
+            "name": "b2fa7f8c-fe6a-4267-9377-7a7e67434f21"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "4f7a5f4b-3ce3-43c1-801e-63863c59a1a3|fa-16-3e-48-23-0e", 
+    "policy-space-name": "prj_0b1d81cb1c9942a9bcbc6d5ec4055f56", 
+    "attributes": {
+        "vm-name": "Keycloak"
+    }
+}

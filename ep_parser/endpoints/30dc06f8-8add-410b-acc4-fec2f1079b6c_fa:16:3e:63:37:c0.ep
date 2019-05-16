@@ -1,0 +1,66 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "10.0.0.1", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "10.0.0.9", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "10.0.0.1"
+        ], 
+        "dns-servers": [
+            "8.8.8.8", 
+            "8.8.4.4"
+        ]
+    }, 
+    "access-interface": "tap30dc06f8-8a", 
+    "ip": [
+        "10.0.0.9"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "10.0.0.9"
+    ], 
+    "mac": "fa:16:3e:63:37:c0", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_bc4f6fbd3296421ca4cf5a6d7805b8f8", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "10.0.0.9", 
+            "policy-space-name": "common", 
+            "floating-ip": "212.237.149.82", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1", 
+            "uuid": "b26d109c-0429-4c73-b915-77c445a1eef1"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_4ba2e456-8a04-4921-8620-70656ded1c26", 
+    "access-uplink-interface": "qpf30dc06f8-8a", 
+    "neutron-network": "4ba2e456-8a04-4921-8620-70656ded1c26", 
+    "interface-name": "qpi30dc06f8-8a", 
+    "security-group": [
+        {
+            "policy-space": "prj_bc4f6fbd3296421ca4cf5a6d7805b8f8", 
+            "name": "8e61978c-7fcc-490b-9d98-a30d29aa3b35"
+        }, 
+        {
+            "policy-space": "prj_bc4f6fbd3296421ca4cf5a6d7805b8f8", 
+            "name": "a01be83b-ccc7-4ca7-bdb3-ff44618e7401"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "30dc06f8-8add-410b-acc4-fec2f1079b6c|fa-16-3e-63-37-c0", 
+    "policy-space-name": "prj_bc4f6fbd3296421ca4cf5a6d7805b8f8", 
+    "attributes": {
+        "vm-name": "SEARCHENGINE_ONE"
+    }
+}

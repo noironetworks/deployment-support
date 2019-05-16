@@ -1,0 +1,66 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "10.78.2.1", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "10.78.2.13", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "10.78.2.1"
+        ], 
+        "dns-servers": [
+            "8.8.8.8", 
+            "8.8.4.4"
+        ]
+    }, 
+    "access-interface": "tap0535881e-5f", 
+    "ip": [
+        "10.78.2.13"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "10.78.2.13"
+    ], 
+    "mac": "fa:16:3e:45:d6:00", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_c645cb4a8e994e4a91b06dd67d71be5c", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "10.78.2.13", 
+            "policy-space-name": "common", 
+            "floating-ip": "212.237.149.162", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1", 
+            "uuid": "16585d3c-d830-4282-b350-7b797917cb56"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_2da4d9b9-aee7-4b4e-a215-346d4a264501", 
+    "access-uplink-interface": "qpf0535881e-5f", 
+    "neutron-network": "2da4d9b9-aee7-4b4e-a215-346d4a264501", 
+    "interface-name": "qpi0535881e-5f", 
+    "security-group": [
+        {
+            "policy-space": "prj_c645cb4a8e994e4a91b06dd67d71be5c", 
+            "name": "7c6a180e-78df-45aa-b131-770da6d7bdbe"
+        }, 
+        {
+            "policy-space": "prj_c645cb4a8e994e4a91b06dd67d71be5c", 
+            "name": "7e2bfd20-5ede-438f-858e-d134f6998a3f"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "0535881e-5ff1-4de7-8b95-6f0a772281fd|fa-16-3e-45-d6-00", 
+    "policy-space-name": "prj_c645cb4a8e994e4a91b06dd67d71be5c", 
+    "attributes": {
+        "vm-name": "ovs-test-sto1"
+    }
+}

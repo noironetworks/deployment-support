@@ -1,0 +1,65 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "192.168.102.1", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "192.168.102.3", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "192.168.102.1"
+        ], 
+        "dns-servers": [
+            "8.8.8.8"
+        ]
+    }, 
+    "access-interface": "tap29ae0367-a3", 
+    "ip": [
+        "192.168.102.3"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "192.168.102.3"
+    ], 
+    "mac": "fa:16:3e:31:90:d2", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_e2affb9277ea44c4bc1d98c8d9d36149", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "192.168.102.3", 
+            "policy-space-name": "common", 
+            "floating-ip": "212.237.149.11", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1", 
+            "uuid": "5a07625c-fd1c-4a5d-b2c7-0ee2bb4a49a7"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_686a96c2-c9df-4a31-b25c-68f7a09a8d99", 
+    "access-uplink-interface": "qpf29ae0367-a3", 
+    "neutron-network": "686a96c2-c9df-4a31-b25c-68f7a09a8d99", 
+    "interface-name": "qpi29ae0367-a3", 
+    "security-group": [
+        {
+            "policy-space": "prj_e2affb9277ea44c4bc1d98c8d9d36149", 
+            "name": "20093166-d869-4e20-aa6f-197eb4bddac3"
+        }, 
+        {
+            "policy-space": "prj_e2affb9277ea44c4bc1d98c8d9d36149", 
+            "name": "f7144196-4834-4841-bd9d-863dc2103131"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "29ae0367-a36e-4921-9bc0-5d1d910ec60b|fa-16-3e-31-90-d2", 
+    "policy-space-name": "prj_e2affb9277ea44c4bc1d98c8d9d36149", 
+    "attributes": {
+        "vm-name": "jumper"
+    }
+}

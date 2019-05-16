@@ -1,0 +1,71 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "10.31.64.1", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "10.31.64.184", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "10.31.64.1"
+        ], 
+        "dns-servers": [
+            "1.1.1.1", 
+            "8.8.8.8", 
+            "8.8.4.4"
+        ]
+    }, 
+    "access-interface": "tap25962e69-8c", 
+    "ip": [
+        "10.31.64.184"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "10.31.64.184"
+    ], 
+    "mac": "fa:16:3e:c1:10:9e", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_a652ca69a2c840b09503775d55f6b97b", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "10.31.64.184", 
+            "next-hop-mac": "42:0b:f4:f1:bc:4a", 
+            "uuid": "d00aaff2-273e-4565-9e7c-5e074f5e04e1", 
+            "floating-ip": "169.254.0.33", 
+            "next-hop-if": "of-1891042824a8", 
+            "policy-space-name": "common", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_a5fe764b-059a-49df-a59d-ebb419b764f5", 
+    "access-uplink-interface": "qpf25962e69-8c", 
+    "neutron-network": "a5fe764b-059a-49df-a59d-ebb419b764f5", 
+    "interface-name": "qpi25962e69-8c", 
+    "security-group": [
+        {
+            "policy-space": "prj_ea771a6ed3444aa982ac390e8d5ea18d", 
+            "name": "cc8d38ae-ec37-4513-9efd-d35dc557697d"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "25962e69-8cae-4e95-a808-2ad9a47470d5|fa-16-3e-c1-10-9e", 
+    "policy-space-name": "prj_a652ca69a2c840b09503775d55f6b97b", 
+    "attributes": {
+        "vm-name": "amphora-d20afeef-0c59-40fd-a33d-1a5ef3508194"
+    }, 
+    "virtual-ip": [
+        {
+            "ip": "10.31.64.181", 
+            "mac": "fa:16:3e:c1:10:9e"
+        }
+    ]
+}

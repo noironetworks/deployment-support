@@ -1,0 +1,66 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "192.168.232.251", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "192.168.232.96", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "192.168.232.251"
+        ], 
+        "dns-servers": [
+            "216.146.35.35", 
+            "8.8.8.8", 
+            "216.146.36.36", 
+            "8.8.4.4"
+        ]
+    }, 
+    "access-interface": "tap695b3fbd-a7", 
+    "ip": [
+        "192.168.232.96"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "192.168.232.96"
+    ], 
+    "mac": "fa:16:3e:a8:8b:73", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_ddb3a1183f41498490c2a2759761d4ae", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "192.168.232.96", 
+            "next-hop-mac": "42:0b:f4:f1:bc:4a", 
+            "uuid": "a8bb316e-e922-4026-b379-abd814be8e0b", 
+            "floating-ip": "169.254.0.27", 
+            "next-hop-if": "of-1891042824a8", 
+            "policy-space-name": "common", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_47c3fc7b-5516-49e7-b8b0-dd8811fcf721", 
+    "access-uplink-interface": "qpf695b3fbd-a7", 
+    "neutron-network": "47c3fc7b-5516-49e7-b8b0-dd8811fcf721", 
+    "interface-name": "qpi695b3fbd-a7", 
+    "security-group": [
+        {
+            "policy-space": "prj_ddb3a1183f41498490c2a2759761d4ae", 
+            "name": "47d7260a-c5e9-4f5b-8c39-cb56d4d09892"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "695b3fbd-a7b0-466c-a4c8-4a3e33c71cc7|fa-16-3e-a8-8b-73", 
+    "policy-space-name": "prj_ddb3a1183f41498490c2a2759761d4ae", 
+    "attributes": {
+        "vm-name": "kibana-0-sto1-ctr_production"
+    }
+}

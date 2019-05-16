@@ -1,0 +1,8 @@
+{
+    "domain-policy-space": "prj_2eb66008145b40d6b366bbfb2eb606ed", 
+    "internal-subnets": [
+        "10.0.0.0/24", 
+        "169.254.0.0/16"
+    ], 
+    "domain-name": "DefaultVRF"
+}

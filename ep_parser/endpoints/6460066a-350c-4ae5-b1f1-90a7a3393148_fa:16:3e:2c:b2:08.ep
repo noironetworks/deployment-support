@@ -1,0 +1,84 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "10.128.0.1", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "10.128.0.6", 
+        "interface-mtu": 1500, 
+        "prefix-len": 22, 
+        "routers": [
+            "10.128.0.1"
+        ], 
+        "dns-servers": [
+            "8.8.8.8", 
+            "8.8.4.4"
+        ]
+    }, 
+    "access-interface": "tap6460066a-35", 
+    "ip": [
+        "10.128.0.6"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "10.128.0.6"
+    ], 
+    "mac": "fa:16:3e:2c:b2:08", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_53a47f7a279549209a4b40ab35daee7d", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "10.128.0.6", 
+            "policy-space-name": "common", 
+            "floating-ip": "212.237.149.102", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1", 
+            "uuid": "cfe10ed2-51f4-424a-8814-b8c1ea68c524"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_d6a95232-3bd4-4add-ade3-63eed3b03207", 
+    "access-uplink-interface": "qpf6460066a-35", 
+    "neutron-network": "d6a95232-3bd4-4add-ade3-63eed3b03207", 
+    "interface-name": "qpi6460066a-35", 
+    "security-group": [
+        {
+            "policy-space": "prj_53a47f7a279549209a4b40ab35daee7d", 
+            "name": "26fd38df-6ba9-4a5e-9a75-7a0a5dd9c363"
+        }, 
+        {
+            "policy-space": "prj_53a47f7a279549209a4b40ab35daee7d", 
+            "name": "4168d0b7-1404-4c76-adf9-7002a356062a"
+        }, 
+        {
+            "policy-space": "prj_53a47f7a279549209a4b40ab35daee7d", 
+            "name": "475f569f-6dfd-4ead-a4da-ff7c780acf16"
+        }, 
+        {
+            "policy-space": "prj_53a47f7a279549209a4b40ab35daee7d", 
+            "name": "a6c8ed6d-0534-42a4-a3f3-f31adbacf250"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "6460066a-350c-4ae5-b1f1-90a7a3393148|fa-16-3e-2c-b2-08", 
+    "policy-space-name": "prj_53a47f7a279549209a4b40ab35daee7d", 
+    "attributes": {
+        "vm-name": "arbetsformedlingen-analytics1-k8s-master-1"
+    }, 
+    "virtual-ip": [
+        {
+            "ip": "10.233.0.0/18", 
+            "mac": "fa:16:3e:2c:b2:08"
+        }, 
+        {
+            "ip": "10.233.64.0/18", 
+            "mac": "fa:16:3e:2c:b2:08"
+        }
+    ]
+}

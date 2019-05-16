@@ -1,0 +1,65 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "10.31.64.1", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "10.31.64.6", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "10.31.64.1"
+        ], 
+        "dns-servers": [
+            "1.1.1.1", 
+            "8.8.8.8", 
+            "8.8.4.4"
+        ]
+    }, 
+    "access-interface": "tap4c52b5ed-66", 
+    "ip": [
+        "10.31.64.6"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "10.31.64.6"
+    ], 
+    "mac": "fa:16:3e:28:57:24", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_a652ca69a2c840b09503775d55f6b97b", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "10.31.64.6", 
+            "next-hop-mac": "42:0b:f4:f1:bc:4a", 
+            "uuid": "23efea35-2cc1-47da-a25f-676e818940c9", 
+            "floating-ip": "169.254.0.1", 
+            "next-hop-if": "of-1891042824a8", 
+            "policy-space-name": "common", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_a5fe764b-059a-49df-a59d-ebb419b764f5", 
+    "access-uplink-interface": "qpf4c52b5ed-66", 
+    "neutron-network": "a5fe764b-059a-49df-a59d-ebb419b764f5", 
+    "interface-name": "qpi4c52b5ed-66", 
+    "security-group": [
+        {
+            "policy-space": "prj_a652ca69a2c840b09503775d55f6b97b", 
+            "name": "214803c5-500f-43c5-b98e-bd799135fef6"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "4c52b5ed-660a-46c6-8833-bb685b4505fc|fa-16-3e-28-57-24", 
+    "policy-space-name": "prj_a652ca69a2c840b09503775d55f6b97b", 
+    "attributes": {
+        "vm-name": "infra1.nodes.elx-os1-prod.bonniernews.io"
+    }
+}

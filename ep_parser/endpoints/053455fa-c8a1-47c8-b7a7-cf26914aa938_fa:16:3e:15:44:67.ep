@@ -1,0 +1,66 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "192.168.232.251", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "192.168.232.82", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "192.168.232.251"
+        ], 
+        "dns-servers": [
+            "216.146.35.35", 
+            "8.8.8.8", 
+            "216.146.36.36", 
+            "8.8.4.4"
+        ]
+    }, 
+    "access-interface": "tap053455fa-c8", 
+    "ip": [
+        "192.168.232.82"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "192.168.232.82"
+    ], 
+    "mac": "fa:16:3e:15:44:67", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_ddb3a1183f41498490c2a2759761d4ae", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "192.168.232.82", 
+            "next-hop-mac": "42:0b:f4:f1:bc:4a", 
+            "uuid": "3c2db02b-c321-48ab-af5e-505989864ab6", 
+            "floating-ip": "169.254.0.28", 
+            "next-hop-if": "of-1891042824a8", 
+            "policy-space-name": "common", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_47c3fc7b-5516-49e7-b8b0-dd8811fcf721", 
+    "access-uplink-interface": "qpf053455fa-c8", 
+    "neutron-network": "47c3fc7b-5516-49e7-b8b0-dd8811fcf721", 
+    "interface-name": "qpi053455fa-c8", 
+    "security-group": [
+        {
+            "policy-space": "prj_ddb3a1183f41498490c2a2759761d4ae", 
+            "name": "47d7260a-c5e9-4f5b-8c39-cb56d4d09892"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "053455fa-c8a1-47c8-b7a7-cf26914aa938|fa-16-3e-15-44-67", 
+    "policy-space-name": "prj_ddb3a1183f41498490c2a2759761d4ae", 
+    "attributes": {
+        "vm-name": "consulserver-0-sto1-ctr_production"
+    }
+}

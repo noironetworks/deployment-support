@@ -1,0 +1,61 @@
+{
+    "neutron-metadata-optimization": true, 
+    "dhcp4": {
+        "domain": "openstacklocal", 
+        "static-routes": [
+            {
+                "dest": "0.0.0.0", 
+                "next-hop": "10.63.0.1", 
+                "dest-prefix": 0
+            }
+        ], 
+        "ip": "10.63.0.5", 
+        "interface-mtu": 1500, 
+        "prefix-len": 24, 
+        "routers": [
+            "10.63.0.1"
+        ], 
+        "dns-servers": [
+            "1.1.1.1"
+        ]
+    }, 
+    "access-interface": "tap69c8e73e-c2", 
+    "ip": [
+        "10.63.0.5"
+    ], 
+    "promiscuous-mode": false, 
+    "anycast-return-ip": [
+        "10.63.0.5"
+    ], 
+    "mac": "fa:16:3e:48:3e:b3", 
+    "domain-name": "DefaultVRF", 
+    "domain-policy-space": "prj_0b1d81cb1c9942a9bcbc6d5ec4055f56", 
+    "ip-address-mapping": [
+        {
+            "mapped-ip": "10.63.0.5", 
+            "policy-space-name": "common", 
+            "floating-ip": "212.237.149.21", 
+            "endpoint-group-name": "openstack_OpenStack|EXT-common-default-l3out1", 
+            "uuid": "1de37b42-4722-4c4a-a156-d4667bef8d22"
+        }
+    ], 
+    "endpoint-group-name": "OpenStack|net_987d8c83-9be7-481e-96a2-5b8f58c37297", 
+    "access-uplink-interface": "qpf69c8e73e-c2", 
+    "neutron-network": "987d8c83-9be7-481e-96a2-5b8f58c37297", 
+    "interface-name": "qpi69c8e73e-c2", 
+    "security-group": [
+        {
+            "policy-space": "prj_0b1d81cb1c9942a9bcbc6d5ec4055f56", 
+            "name": "c4c17531-8f7f-4dd4-b2b6-ddad89272f74"
+        }, 
+        {
+            "policy-space": "common", 
+            "name": "openstack_DefaultSecurityGroup"
+        }
+    ], 
+    "uuid": "69c8e73e-c223-442a-8501-62b93cce2792|fa-16-3e-48-3e-b3", 
+    "policy-space-name": "prj_0b1d81cb1c9942a9bcbc6d5ec4055f56", 
+    "attributes": {
+        "vm-name": "FreeIPA-2"
+    }
+}
