@@ -44,7 +44,11 @@ class ToggleConfig(object):
                                {'item': 'extension_drivers',
                                 'section_name': 'group_policy',
                                 'old': None,
-                                'new': DRV}
+                                'new': DRV},
+                               {'item': 'enable_iptables_firewall',
+                                'section_name': 'ml2_apic_aim',
+                                'old': None,
+                                'new': 'True'}
                               ]
 
     def _get_legacy_config(self):
