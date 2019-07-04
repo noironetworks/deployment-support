@@ -28,6 +28,7 @@ rm -f requirements.txt
 %doc README.rst
 %{python2_sitelib}/agent
 %{python2_sitelib}/legacy_migration
+%{python2_sitelib}/ep_parser
 %{python2_sitelib}/support_tools-%%{version}*.egg-info
 %{_bindir}/support_tool
 
