@@ -60,6 +60,8 @@ class ConfigInfo(object):
             return None, {}
 
     def set_section_config(self, section_name, key, value):
+        if not self.sections_dict.get(section_name):
+            self.sections_dict[section_name] = {}
         self.sections_dict[section_name][key] = value
 
     def get_section_config(self, section_name):
