@@ -80,7 +80,16 @@ class ToggleConfig(object):
                                            'agent_down_time', '75')
 
     def new_config(self):
+        # Update to the new configuration state
         self._set_config('new')
+        # Make sure we cover any configuration additions
+        cfg_obj = self.cfg_objs.values()[0]
+        for entry in self.config_changes:
+            if entry['new'] and not entry['old']:
+                cfg_obj.set_section_config(entry['section_name'],
+                                           entry['item'], entry['new'])
+        # Make sure agent down time is long enough to perform
+        # the migration
         for cfg_obj in self.cfg_objs.values():
             if 'neutron.conf' in cfg_obj.filename :
                 cfg_obj.set_section_config('DEFAULT',
