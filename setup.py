@@ -18,7 +18,7 @@ import setuptools
 
 setuptools.setup(
     name="support-tools",
-    version="1.0.2",
+    version="1.0.3",
     zip_safe=False,
     packages=setuptools.find_packages(exclude=["*.tests", "*.tests.*",
                                                "tests.*", "tests"]),
