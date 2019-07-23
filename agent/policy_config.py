@@ -52,6 +52,7 @@ class PolicyObject(object):
         if jsondict.get('parent_relation'):
             self.parent_relation = jsondict.get('parent_relation')
         # Keep the original dict so we can display it
+        self.visited = False
         self.jsondict = jsondict
 
     def _get_property(self, property_name):
@@ -115,11 +116,16 @@ class PolicyConfigManager(object):
         self.list_objects_by_type('GbpeVMEp')
 
     def find_related_objects(self, node):
-        related_objects = node.children
+        related_objects = node.children[:]
         for prop in node.properties:
             if (prop.get('name') == 'target' and
                     prop.get('data',{}).get('reference_uri')):
-                related_objects.append(prop['data']['reference_uri'])
+                uri = prop['data']['reference_uri']
+                if not self.objects_by_uri.get(uri):
+                    print '####### URI for %s, but not found in dump ######' % uri
+                elif not self.objects_by_uri[uri].visited:
+                    related_objects.append(prop['data']['reference_uri'])
+                    self.objects_by_uri[uri].visited = True
         for uri in related_objects:
             child_obj = self.objects_by_uri.get(uri)
             if child_obj:
