@@ -21,7 +21,7 @@ source /home/noiro/overcloudrc
 # TBD: There is some version mismatch issue so this quota set command
 #      won't work on the external router VM. You will have to run this
 #      command on the fab undercloud for now then.
-openstack quota set --class --cores 56 --ram 114688 default
+openstack quota set --class --cores 72 --ram 114688 default
 
 openstack project create ${PRJ_NAME}
 openstack role add --user admin --project ${PRJ_NAME} _member_
