@@ -21,7 +21,7 @@ source /home/noiro/overcloudrc
 # TBD: There is some version mismatch issue so this quota set command
 #      won't work on the external router VM. You will have to run this
 #      command on the fab undercloud for now then.
-openstack quota set --class --cores 28 --ram 114688 default
+openstack quota set --class --cores 56 --ram 114688 default
 
 openstack project create ${PRJ_NAME}
 openstack role add --user admin --project ${PRJ_NAME} _member_
@@ -53,7 +53,7 @@ FIP_SUBNET_ID="$(openstack subnet list | grep "60.60.60" | cut -d ' ' -f 2)"
 echo "FIP subnet ID: ${FIP_SUBNET_ID}"
 neutron floatingip-create --tenant-id ${PRJ_ID} --floating-ip-address 60.60.60.199 --subnet ${FIP_SUBNET_ID} l3out-2
 
-openstack flavor create --public --ram 16384 --disk 80 --vcpus 4 aci_rhel_medium
+openstack flavor create --public --ram 16384 --disk 80 --vcpus 8 aci_rhel_huge
 
 PUB_SSH_KEY="$(cat ~/.ssh/id_rsa.pub)"
 echo "noiro public SSH key: ${PUB_SSH_KEY}"
@@ -86,7 +86,7 @@ networking:
 platform:
   openstack:
     cloud: openstack
-    computeFlavor: aci_rhel_medium
+    computeFlavor: aci_rhel_huge
     externalDNS: ["172.23.136.143", "172.23.136.144"]
     externalNetwork: l3out-2
     lbFloatingIP: 60.60.60.199
