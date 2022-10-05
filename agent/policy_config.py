@@ -34,11 +34,11 @@ class PolicyObject(object):
 
     def __init__(self, jsondict):
         if not jsondict.get('subject'):
-            print "Warning: object with no subject"
+            print("Warning: object with no subject")
             return None
          
         if not jsondict.get('uri'):
-            print "Warning: object with no uri"
+            print("Warning: object with no uri")
             return None
 
         self.uri = jsondict['uri']
@@ -61,7 +61,7 @@ class PolicyObject(object):
                 return prop
 
     def do_print(self):
-        print json.dumps(self.jsondict, indent=4, sort_keys=True)
+        print(json.dumps(self.jsondict, indent=4, sort_keys=True))
 
 
 
@@ -122,7 +122,7 @@ class PolicyConfigManager(object):
                     prop.get('data',{}).get('reference_uri')):
                 uri = prop['data']['reference_uri']
                 if not self.objects_by_uri.get(uri):
-                    print '####### URI for %s, but not found in dump ######' % uri
+                    print('####### URI for %s, but not found in dump ######' % uri)
                 elif not self.objects_by_uri[uri].visited:
                     related_objects.append(prop['data']['reference_uri'])
                     self.objects_by_uri[uri].visited = True
@@ -132,7 +132,7 @@ class PolicyConfigManager(object):
                 child_obj.do_print()
                 self.find_related_objects(child_obj)
             else:
-                print '####### URI for %s, but not found in dump ######' % uri
+                print('####### URI for %s, but not found in dump ######' % uri)
         
 
     def get_policy_for_ep(self, endpoint):
@@ -177,6 +177,20 @@ class PolicyConfigManager(object):
         # Now do depth-first search for each child
         self.find_related_objects(l2_ep_obj)
 
+    def find_unresolved_policy(self):
+        """Find all unresolved policy
+
+        Find all the MOs that have a "target" element in their
+        "properties' section, then verify that the target MO also
+        exists in the policy.
+        """
+        for opflex_obj in list(self.objects_by_uri.values()):
+            target = opflex_obj._get_property('target')
+            if target:
+                target_uri = target['data']['reference_uri']
+                if not self.objects_by_uri.get(target_uri):
+                    print('####### URI for %s, but not found in dump ######' % target_uri)
+
 
 ###################################################################
 # These currently aren't used -- we'll probably just use the dicts
@@ -199,7 +213,7 @@ class PropertiesObject(object):
         if jsondict.get('data'):
             if self.name == 'target':
                 if not isinstance(jsondict['data'], dict):
-                    print "Data is target, but not a dict"
+                    print("Data is target, but not a dict")
                     return None
             self.data = jsondict['data']
 
@@ -217,10 +231,10 @@ class DataObject(object):
 
     def __init__(self, jsondict):
         if not jsondict.get('subject'):
-            print "No subject in Data"
+            print("No subject in Data")
             return None
         if jsondict.get('reference_uri'):
-            print "No reference_uri in Data"
+            print("No reference_uri in Data")
             return None
         self.subject = jsondict['subject']
         self.reference_uri = jsondict['reference_uri']
