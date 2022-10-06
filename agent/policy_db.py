@@ -66,6 +66,14 @@ def find_policy(policy_file, policy_name):
     policy_conf = policy_config.PolicyConfigManager(policy_file)
     policy_conf.list_objects_by_type(policy_name)
 
+@policy_db.command(name="find-unresolved")
+@click.option('--policy-file',required=True,
+              help='Policy file name (JSON)')
+def find_unresolved(policy_file):
+    policy_conf = policy_config.PolicyConfigManager(policy_file)
+    policy_conf.find_unresolved_policy()
+
+
 
 def run():
     policy_db(auto_envvar_prefix='POLICYDB')
