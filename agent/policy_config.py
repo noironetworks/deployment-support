@@ -191,6 +191,34 @@ class PolicyConfigManager(object):
                 if not self.objects_by_uri.get(target_uri):
                     print('####### URI for %s, but not found in dump ######' % target_uri)
 
+    def diff_policy(self, policy_conf_2):
+        """Find policy difference
+
+        Compare the current policy configuration against another
+        policy configuration.
+        """
+        keys1 = set(list(self.objects_by_uri.keys()))
+        keys2 = set(list(policy_conf_2.objects_by_uri.keys()))
+        additions = keys2 - keys1
+        deletions = keys1 - keys2
+        for addition in additions:
+            policy_obj = policy_conf_2.objects_by_uri[addition]
+            print("########## Added %(policy_type)s with URI %(uri)s" % {
+                'policy_type': policy_obj.subject,
+                'uri': policy_obj.uri})
+        for deletion in deletions:
+            policy_obj = self.objects_by_uri[deletion]
+            print("########## Deleted %(policy_type)s with URI %(uri)s" % {
+                'policy_type': policy_obj.subject,
+                'uri': policy_obj.uri})
+        for key in keys1 & keys2:
+            policy_obj1 = self.objects_by_uri[key]
+            policy_obj2 = policy_conf_2.objects_by_uri[key]
+            if policy_obj1.jsondict != policy_obj2.jsondict:
+                print("########## Changed %(policy_type)s with URI %(uri)s " % {
+                'policy_type': policy_obj1.subject,
+                'uri': policy_obj1.uri})
+
 
 ###################################################################
 # These currently aren't used -- we'll probably just use the dicts

@@ -73,6 +73,15 @@ def find_unresolved(policy_file):
     policy_conf = policy_config.PolicyConfigManager(policy_file)
     policy_conf.find_unresolved_policy()
 
+@policy_db.command(name="diff-policy")
+@click.option('--policy-file-1',required=True,
+              help='Policy file 1 name (JSON)')
+@click.option('--policy-file-2',required=True,
+              help='Policy file 2 name (JSON)')
+def find_unresolved(policy_file_1, policy_file_2):
+    policy_conf_1 = policy_config.PolicyConfigManager(policy_file_1)
+    policy_conf_2 = policy_config.PolicyConfigManager(policy_file_2)
+    policy_conf_1.diff_policy(policy_conf_2)
 
 
 def run():
