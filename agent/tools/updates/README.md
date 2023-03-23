@@ -55,7 +55,7 @@ $ tripleo-ansible-inventory --ansible_ssh_user heat-admin --static-yaml-inventor
 3. Run the playbooks to update the opflex agent on the nodes. You can limit which nodes
    are upgraded using the -l argument:
 
-<pre><code>$ ansible-playbook -i inventory.txt update-opflex-agent-binaries.yaml -l overcloud-novacompute-0
-$ ansible-playbook -i inventory.txt update-opflex-agent-config.yaml -l overcloud-novacompute-0
-$ ansible-playbook -i inventory.txt run-new-opflex-agent.yaml -l overcloud-novacompute-0
+<pre><code>$ ansible-playbook -i inventory.yaml update-opflex-agent-binaries.yaml -l overcloud-novacompute-0
+$ ansible-playbook -i inventory.yaml update-opflex-agent-config.yaml -l overcloud-novacompute-0
+$ ansible-playbook -i inventory.yaml run-new-opflex-agent.yaml -l overcloud-novacompute-0
 </code></pre>
