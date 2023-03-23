@@ -1,0 +1,22 @@
+---
+- name: Update configuration files for the opflex agent
+  hosts: overcloud
+  become: yes
+  tasks:
+  - name: Step1. Add (and enable) the async JSON parser configuration for OVSDB
+    lineinfile:
+      dest: /var/lib/config-data/puppet-generated/opflex/etc/opflex-agent-ovs/conf.d/opflex-agent-ovs.conf
+      state: present
+      insertbefore: '    "feature": {'
+      line: "{{ item }}"
+    with_items:
+    - '    "ovs": {'
+    - '      "asyncjson" : { "enabled" : "false"}'
+    - '    },'
+  - name: Step2. Change the policy retry delay timeout value
+    replace:
+      path: /var/lib/config-data/puppet-generated/opflex/etc/opflex-agent-ovs/conf.d/opflex-agent-ovs.conf
+      regexp: "{{ item.regexp }}"
+      replace: "{{ item.line }}"
+    with_items:
+    - {regexp: '         "policy-retry-delay": 10', line: '         "policy-retry-delay": 120'

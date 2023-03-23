@@ -1,0 +1,55 @@
+---
+- name: Change the binaries of the opflex agent
+  hosts: overcloud
+  become: yes
+  tasks:
+  - name: Step1. Stop the ciscoaci_opflex_agent container/service
+    service:
+        name: tripleo_ciscoaci_opflex_agent
+        state: stopped
+  - name: Step2. Save a copy of the current ciscoaci_opflex_agent supervisord configuration file
+    copy:
+        src: /var/lib/config-data/puppet-generated/opflex/etc/opflex-agent-ovs/opflex_supervisord.conf
+        dest: /var/lib/config-data/puppet-generated/opflex/etc/opflex-agent-ovs/opflex_supervisord.conf.orig
+        remote_src: yes
+  - name: Step3. Modify the supervisord to prevent launching of opflex_agent, mcast_daemon, and monitor script
+    # sh ./remove-programs.sh /var/lib/config-data/puppet-generated/opflex/etc/opflex-agent-ovs/opflex_supervisord.conf
+    replace:
+      path: /var/lib/config-data/puppet-generated/opflex/etc/opflex-agent-ovs/opflex_supervisord.conf
+      regexp: "{{ item.regexp }}"
+      replace: "{{ item.line }}"
+    with_items:
+    - {regexp: '^\[program:opflex-agent\]', line: '#[program:opflex-agent]'}
+    - {regexp: '^command=/bin/sh ', line: '#command=/bin/sh '}
+    - {regexp: '^exitcodes=0,2', line: '#exitcodes=0,2'}
+    - {regexp: '^stopasgroup=true', line: '#stopasgroup=true'}
+    - {regexp: '^startsecs=10', line: '#startsecs=10'}
+    - {regexp: '^startretries=3', line: '#startretries=3'}
+    - {regexp: '^stopwaitsecs=10', line: '#stopwaitsecs=10'}
+    - {regexp: '^stdout_logfile=NONE', line: '#stdout_logfile=NONE'}
+    - {regexp: '^stderr_logfile=NONE', line: '#stderr_logfile=NONE'}
+    - {regexp: '^\[program:monitor-ovs\]', line: '#[program:monitor-ovs]'}
+    - {regexp: '^\[program:mcast-d\]', line: '#[program:mcast-d]'}
+    - {regexp: '^command=/usr/bin/mcast_daemon ', line: '#command=/usr/bin/mcast_daemon '}
+    - {regexp: '^autorestart=true', line: '#autorestart=true'}
+  - name: Step4. Start the service, without those programs
+    service:
+        name: tripleo_ciscoaci_opflex_agent
+        state: started
+  - name: Step5. Copy the tarball with the new agent binaries to that host
+    copy:
+        src: /home/stack/opflex-agent-tarball.tar.gz
+        dest: /home/heat-admin/opflex-agent-tarball.tar.gz
+  - name: Step6. Copy the tarball of new opflex_agent binaries into the ciscoaci_opflex_agent container
+    shell: /bin/podman cp opflex-agent-tarball.tar.gz ciscoaci_opflex_agent:opflex-agent-tarball.tar.gz 
+  - name: Step7. Extract the tarball inside the container
+    shell: /bin/podman exec -u root ciscoaci_opflex_agent tar -xf opflex-agent-tarball.tar.gz
+  - name: Step8. Copy the script to replace the agent binaries to the host
+    copy:
+        src: /home/stack/replace-binaries.sh
+        dest: /home/heat-admin/replace-binaries.sh
+  - name: Step8. Copy the script to replace the agent binaries into the ciscoaci_opflex_agent container
+    shell: /bin/podman cp replace-binaries.sh ciscoaci_opflex_agent:replace-binaries.sh
+  - name: Step8. Run the script to remove the old binaries and install the new ones
+    become: yes
+    shell: /bin/podman exec -u root ciscoaci_opflex_agent sh /replace-binaries.sh -y

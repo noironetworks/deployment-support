@@ -1,0 +1,15 @@
+---
+- name: Run the new opflex agent binaries
+  hosts: overcloud
+  become: yes
+  tasks:
+  - name: Step1. Restore the old ciscoaci_opflex_agent supervisord configuration file
+    copy:
+        src: /var/lib/config-data/puppet-generated/opflex/etc/opflex-agent-ovs/opflex_supervisord.conf.orig
+        dest: /var/lib/config-data/puppet-generated/opflex/etc/opflex-agent-ovs/opflex_supervisord.conf
+        remote_src: yes
+  - name: Step2. Retart the tripleo_ciscoaci_opflex_agent service, to use the new agent binaries and configuration
+    service:
+        name: tripleo_ciscoaci_opflex_agent
+        state: restarted
+
