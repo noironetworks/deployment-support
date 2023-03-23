@@ -19,4 +19,4 @@
       regexp: "{{ item.regexp }}"
       replace: "{{ item.line }}"
     with_items:
-    - {regexp: '         "policy-retry-delay": 10', line: '         "policy-retry-delay": 120'
+    - {regexp: '         "policy-retry-delay": 10', line: '         "policy-retry-delay": 120'}
