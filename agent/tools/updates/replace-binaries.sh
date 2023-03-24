@@ -62,3 +62,4 @@ if [ "${CHECK_ONLY}" != '' ]; then
    rpm -i ${NEW_OPFLEX_AGENT}
    rpm -i ${NEW_OPFLEX_AGENT_RENDERER_OPENVSWITCH}
 fi
+rm -f *.rpm
