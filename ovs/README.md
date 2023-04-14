@@ -10,23 +10,25 @@ There are two compoents to the tooling:
 The python script is used as follows:
 
 ````
-[root@overcloud-novacompute-0 OOpenFlow13]# python
-Python 3.6.8 (default, Aug  3 2021, 06:54:29)
-[GCC 8.3.1 20191121 (Red Hat 8.3.1-5)] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> import bridge_ifs
->>> mgr = bridge_ifs.OVSInterfaceParser()
->>> mgr.parse_ports('OOpenFlow-int-brfabric')
->>> mgr.parse_ports('OOpenFlow-int-brint')
->>> mgr.create_script_file()
+    # python3 --bridgefile ovs-ports --bridgefile ovs-ports-fabric --outfile config-bridges.sh
+
 ````
 
 This creates a "config-bridges.sh" script, which can be run to create
-the relevant tap ports, patch ports, etc.
+the relevant tap ports, patch ports, etc. You can use the --outfile argument
+to create a different destination file. Note that both the br-int and br-fabric
+files are needed in order for the python program to work.
 
 A simpler way to recreate the bridges and ports is to obtain the OVSDB
 database, and simply import that. However, that component may not always
 be available, but the output of the "ovs-ofctl show <bridge name>" usually is.
+
+Before running that script, you can run the cleanup-bridges.sh script to remove
+any ports from the br-int and br-fabric bridges from an existing setup:
+
+````
+    # sh ./cleanup-bridges.sh
+
 
 The shell script is run as follows:
 ````

@@ -1,5 +1,5 @@
+import argparse
 import re
-
 
 
 class OVSInterfaceParser(object):
@@ -103,3 +103,18 @@ class OVSInterfaceParser(object):
         self.add_gen_ports()
         self.add_vxlan_port()
         self.close_script_file()
+
+
+if __name__ == '__main__':
+    if_parser = OVSInterfaceParser()
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--bridgefile', dest='bridgefiles', action='append',
+                        help="File containing output from running 'ovs-ofctl show <bridge name>'")
+    parser.add_argument('--outfile', dest='outfile', default='config-bridges.sh',
+                        help="File containing output from running 'ovs-ofctl show <bridge name>'")
+
+    args = parser.parse_args()
+    for filename in args.bridgefiles:
+        if_parser.parse_ports(filename)
+    if_parser.create_script_file()
