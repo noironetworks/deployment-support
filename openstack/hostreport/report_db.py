@@ -116,7 +116,6 @@ class DropLogDbManager(object):
     def __init__(self, droplog_filename):
         self.filename = droplog_filename
         self.intervals = []
-        self._get_droplog_entries()
 
     def parse_date_time(self, date_time):
         date, time = date_time.split()
@@ -126,10 +125,6 @@ class DropLogDbManager(object):
         return datetime.datetime(int(yyyy), month_to_number[mmm.lower()],
                                  int(dd), int(hh), int(mm), int(ss),
                                  int(mmmmmm))
-
-    def _get_droplog_entries(self):
-        with open(self.filename, 'r') as fd:
-            self.all_droplog_lines = fd.readlines()
 
     def show_drops(self, start_time=None, stop_time=None, table=None):
         """Provide summary of all drops seen in the logs.
@@ -163,16 +158,17 @@ class DropLogDbManager(object):
             start = self.parse_date_time(start_time)
         else:
             start = FIRST_TIME
-        for droplog_line in self.all_droplog_lines:
-            entry = DropLogDbEntry(droplog_line)
-            curr = self.parse_date_time(entry.date_time())
-            if start_time and curr < start:
-                continue
-            if stop_time and curr > stop:
-                break
-            if entry.table not in table:
-                continue
-            entry.do_print()
+        with open(self.filename, 'r') as fd:
+            for droplog_line in fd:
+                entry = DropLogDbEntry(droplog_line)
+                curr = self.parse_date_time(entry.date_time())
+                if start_time and curr < start:
+                    continue
+                if stop_time and curr > stop:
+                    break
+                if entry.table not in table:
+                    continue
+                entry.do_print()
 
     def _summarize_drops(self, start_time=None, stop_time=None,
                          interval=None, exclude=None):
@@ -195,24 +191,25 @@ class DropLogDbManager(object):
                                                stop_time=stop,
                                                interval=delta)
         self.intervals.append(curr_interval)
-        for droplog_line in self.all_droplog_lines:
-            entry = DropLogDbEntry(droplog_line)
-            entry_time = self.parse_date_time(entry.date_time())
-            if entry_time > curr_interval.stop_time:
-                curr_interval = DropLogSummaryInterval(
-                        start_time=curr_interval.stop_time,
-                        stop_time=stop,
-                        interval=delta)
-                self.intervals.append(curr_interval)
-            if entry_time < start:
-                continue
-            if entry_time > stop:
-                break
-            log_key = ''
-            for key in list(entry.kv_dict.keys()):
-                if key not in exclude:
-                    log_key += key+entry.kv_dict[key]
-            curr_interval.summarized.setdefault(log_key, []).append(entry)
+        with open(self.filename, 'r') as fd:
+            for droplog_line in fd:
+                entry = DropLogDbEntry(droplog_line)
+                entry_time = self.parse_date_time(entry.date_time())
+                if entry_time > curr_interval.stop_time:
+                    curr_interval = DropLogSummaryInterval(
+                            start_time=curr_interval.stop_time,
+                            stop_time=stop,
+                            interval=delta)
+                    self.intervals.append(curr_interval)
+                if entry_time < start:
+                    continue
+                if entry_time > stop:
+                    break
+                log_key = ''
+                for key in list(entry.kv_dict.keys()):
+                    if key not in exclude:
+                        log_key += key+entry.kv_dict[key]
+                curr_interval.summarized.setdefault(log_key, []).append(entry)
         for interval in self.intervals:
             print("Start Time: %s" % interval.start_time)
             for key in list(interval.summarized.keys()):
