@@ -108,6 +108,11 @@ class PolicyConfigManager(object):
         for opflex_obj in self.objects_by_type.get(object_type, []):
             opflex_obj.do_print()
 
+    def count_objects_by_type(self, object_type):
+        print('%(type)s: %(number)s' % {
+            'type': object_type,
+            'number': len(self.objects_by_type.get(object_type, []))})
+
     def list_vms(self):
         """List all the VM policy objects
 

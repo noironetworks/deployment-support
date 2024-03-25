@@ -66,6 +66,16 @@ def find_policy(policy_file, policy_name):
     policy_conf = policy_config.PolicyConfigManager(policy_file)
     policy_conf.list_objects_by_type(policy_name)
 
+@policy_db.command(name="count-policy")
+@click.option('--policy-file',required=True,
+              help='Policy file name (JSON)')
+@click.option('--policy-name',required=True,
+              help='Name of the type of policy objects to find')
+def count_policy(policy_file, policy_name):
+    policy_conf = policy_config.PolicyConfigManager(policy_file)
+    policy_conf.count_objects_by_type(policy_name)
+
+
 @policy_db.command(name="find-unresolved")
 @click.option('--policy-file',required=True,
               help='Policy file name (JSON)')
