@@ -28,32 +28,42 @@ def policy_db():
               help='Policy file name (JSON)')
 @click.option('--endpoint', required=True,
               help='ID of endpoint (L2 MAC or L3 IP)')
-def ep_info(policy_file, endpoint):
-    policy_conf = policy_config.PolicyConfigManager(policy_file)
+@click.option('--policy-type', required=False, default='agent',
+              help='Type of policy file ("agent" or "aim")')
+def ep_info(policy_file, policy_type, endpoint):
+    policy_conf = policy_config.PolicyConfigManager(policy_file,
+                                                    policy_type=policy_type)
     policy_conf.get_policy_for_ep(endpoint)
 
 
 @policy_db.command(name="list-l2-eps")
 @click.option('--policy-file',required=True,
               help='Policy file name (JSON)')
-def list_l2_eps(policy_file):
-    policy_conf = policy_config.PolicyConfigManager(policy_file)
+@click.option('--policy-type', required=False, default='agent',
+              help='Type of policy file ("agent" or "aim")')
+def list_l2_eps(policy_file, policy_type):
+    policy_conf = policy_config.PolicyConfigManager(policy_file,
+                                                    policy_type=policy_type)
     policy_conf.list_l2_eps()
 
 
 @policy_db.command(name="list-l3-eps")
 @click.option('--policy-file',required=True,
               help='Policy file name (JSON)')
-def list_l3_eps(policy_file):
-    policy_conf = policy_config.PolicyConfigManager(policy_file)
+@click.option('--policy-type', required=False, default='agent',
+              help='Type of policy file ("agent" or "aim")')
+def list_l3_eps(policy_file, policy_type):
+    policy_conf = policy_config.PolicyConfigManager(policy_file,
+                                                    policy_type=policy_type)
     policy_conf.list_l3_eps()
 
 
 @policy_db.command(name="list-vms")
 @click.option('--policy-file',required=True,
               help='Policy file name (JSON)')
-def list_vms(policy_file):
-    policy_conf = policy_config.PolicyConfigManager(policy_file)
+def list_vms(policy_file, policy_type):
+    policy_conf = policy_config.PolicyConfigManager(policy_file,
+                                                    policy_type=policy_type)
     policy_conf.list_vms()
 
 
@@ -62,15 +72,48 @@ def list_vms(policy_file):
               help='Policy file name (JSON)')
 @click.option('--policy-name',required=True,
               help='Name of the type of policy objects to find')
-def find_policy(policy_file, policy_name):
-    policy_conf = policy_config.PolicyConfigManager(policy_file)
+@click.option('--policy-type', required=False, default='agent',
+              help='Type of policy file ("agent" or "aim")')
+def find_policy(policy_file, policy_type, policy_name):
+    policy_conf = policy_config.PolicyConfigManager(policy_file,
+                                                    policy_type=policy_type)
     policy_conf.list_objects_by_type(policy_name)
+
+
+@policy_db.command(name="count-policy")
+@click.option('--policy-file',required=True,
+              help='Policy file name (JSON)')
+@click.option('--policy-name',required=True,
+              help='Name of the type of policy objects to find')
+@click.option('--policy-type', required=False, default='agent',
+              help='Type of policy file ("agent" or "aim")')
+def count_policy(policy_file, policy_type, policy_name):
+    policy_conf = policy_config.PolicyConfigManager(policy_file,
+                                                    policy_type=policy_type)
+    policy_conf.count_objects_by_type(policy_name)
+
+
+@policy_db.command(name="count-all")
+@click.option('--policy-file',required=True,
+              help='Policy file name (JSON)')
+@click.option('--policy-type', required=False, default='agent',
+              help='Type of policy file ("agent" or "aim")')
+@click.option('--details/--no-details',required=False,default=False,
+              help='Show per-class counts as well')
+def count_policy(policy_file, policy_type, details=False):
+    policy_conf = policy_config.PolicyConfigManager(policy_file,
+                                                    policy_type=policy_type)
+    policy_conf.count_objects(details=details)
+
 
 @policy_db.command(name="find-unresolved")
 @click.option('--policy-file',required=True,
               help='Policy file name (JSON)')
-def find_unresolved(policy_file):
-    policy_conf = policy_config.PolicyConfigManager(policy_file)
+@click.option('--policy-type', required=False, default='agent',
+              help='Type of policy file ("agent" or "aim")')
+def find_unresolved(policy_file, policy_type):
+    policy_conf = policy_config.PolicyConfigManager(policy_file,
+                                                    policy_type=policy_type)
     policy_conf.find_unresolved_policy()
 
 @policy_db.command(name="diff-policy")
@@ -78,9 +121,13 @@ def find_unresolved(policy_file):
               help='Policy file 1 name (JSON)')
 @click.option('--policy-file-2',required=True,
               help='Policy file 2 name (JSON)')
-def find_unresolved(policy_file_1, policy_file_2):
-    policy_conf_1 = policy_config.PolicyConfigManager(policy_file_1)
-    policy_conf_2 = policy_config.PolicyConfigManager(policy_file_2)
+@click.option('--policy-type', required=False, default='agent',
+              help='Type of policy file ("agent" or "aim")')
+def find_unresolved(policy_file_1, policy_type, policy_file_2):
+    policy_conf_1 = policy_config.PolicyConfigManager(policy_file_1,
+                                                      policy_type=policy_type)
+    policy_conf_2 = policy_config.PolicyConfigManager(policy_file_2,
+                                                      policy_type=policy_type)
     policy_conf_1.diff_policy(policy_conf_2)
 
 
