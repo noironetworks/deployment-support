@@ -17,6 +17,18 @@ import json
 import netaddr
 
 
+conversion_map = {
+        'GbpSecGroup': 'GbpLocalSecGroup',
+        'GbpSecGroupRule': 'GbpLocalSecGroupRule',
+        'GbpSecGroupSubject': 'GbpLocalSecGroupSubject',
+        'EprSecurityGroupContext': 'EprSecurityGroupContext',
+        'EpdrEndPointToSecGroupRSrc': 'EpdrEndPointToLocalSecGroupRSrc',
+        'GbpeSecGrpClassifierCounter': 'GbpeSecGrpClassifierCounter',
+        'GbpSecGroupRuleToActionRSrc': 'GbpLocalSecGroupRuleToActionRSrc',
+        'GbpSecGroupRuleToClassifierRSrc': 'GbpLocalSecGroupRuleToClassifierRSrc',
+        'GbpSecGroupRuleToRemoteAddressRSrc': 'GbpLocalSecGroupRuleToRemoteAddressRSrc'
+        }
+
 class BasePolicyObject(object):
     def __init__(self, jsondict):
         # Keep the original dict so we can display it
@@ -26,6 +38,8 @@ class BasePolicyObject(object):
     def do_print(self):
         print(json.dumps(self.jsondict, indent=4, sort_keys=True))
 
+    def to_dict(self):
+        return self.jsondict
 
 class AimPolicyObject(BasePolicyObject):
     """AIM Hash Tree Policy Object
@@ -324,6 +338,35 @@ class PolicyConfigManager(object):
                 self.find_related_objects(child_obj)
             else:
                 print('####### URI for %s, but not found in dump ######' % uri)
+
+    def get_related_objects(self, node, exclude_types=list()):
+        all_relatives = []
+        related_uris = node.children[:]
+        for prop in node.properties:
+            if (prop.get('name') == 'target' and
+                    prop.get('data',{}).get('reference_uri')):
+                uri = prop['data']['reference_uri']
+                if not self.objects_by_uri.get(uri):
+                    print('####### URI for %s, but not found in dump ######' % uri)
+                elif not self.objects_by_uri[uri].visited:
+                    related_uris.append(prop['data']['reference_uri'])
+                    self.objects_by_uri[uri].visited = True
+        for uri in related_uris:
+            child_obj = self.objects_by_uri.get(uri)
+            if child_obj:
+                if child_obj.subject in exclude_types:
+                    if child_obj.uri in node.children:
+                        node.children.pop(node.children.index(child_obj.uri))
+                    continue
+                all_relatives.append(child_obj)
+                relatives = self.get_related_objects(child_obj, exclude_types=exclude_types)
+                if relatives:
+                    for relative in relatives:
+                        if relative.subject not in exclude_types:
+                            all_relatives.append(relative)
+            else:
+                print('####### URI for %s, but not found in dump ######' % uri)
+        return all_relatives
         
 
     def get_policy_for_ep(self, endpoint):
@@ -367,6 +410,34 @@ class PolicyConfigManager(object):
                 return
         # Now do depth-first search for each child
         self.find_related_objects(l2_ep_obj)
+
+    def extract_security(self):
+        for opflex_obj in self.objects_by_type.get('GbpSecGroup', []):
+            sg_json = []
+            sg_objs = [opflex_obj]
+            related_objs = self.get_related_objects(opflex_obj)
+            if related_objs:
+                sg_objs.extend(related_objs)
+            sg_name = opflex_obj._get_property('name')
+            sg_file = sg_name['data'] + '.netpol'
+            for obj in sg_objs:
+                sg_json.append(obj.to_dict())
+            with open(sg_file, 'w+') as fd:
+                json.dump(sg_json, fd, indent=4)
+
+    def exclude_security(self):
+        exclude_types = conversion_map.keys()
+        # Start from the root and navigate the entire tree
+        opflex_objs = self.objects_by_type.get('DmtreeRoot', [])
+        sg_json = []
+        sg_objs = opflex_objs
+        related_objs = self.get_related_objects(opflex_objs[0],
+                                                exclude_types=exclude_types)
+        if related_objs:
+            sg_objs.extend(related_objs)
+        for obj in sg_objs:
+            sg_json.append(obj.to_dict())
+        print(json.dumps(sg_json, indent=4, sort_keys=True))
 
     def find_unresolved_policy(self):
         """Find all unresolved policy

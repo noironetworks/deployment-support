@@ -131,6 +131,25 @@ def find_unresolved(policy_file_1, policy_type, policy_file_2):
     policy_conf_1.diff_policy(policy_conf_2)
 
 
+@policy_db.command(name="extract-security")
+@click.option('--policy-file',required=True,
+              help='Policy file name (JSON)')
+def extract_security(policy_file):
+    policy_conf = policy_config.PolicyConfigManager(policy_file,
+                                                    policy_type='agent')
+    policy_conf.extract_security()
+
+
+@policy_db.command(name="exclude-security")
+@click.option('--policy-file',required=True,
+              help='Policy file name (JSON)')
+def exclude_security(policy_file):
+    policy_conf = policy_config.PolicyConfigManager(policy_file,
+                                                    policy_type='agent')
+    policy_conf.exclude_security()
+
+
+
 def run():
     policy_db(auto_envvar_prefix='POLICYDB')
 
